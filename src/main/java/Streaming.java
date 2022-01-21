@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 public class Streaming {
 
-    private static final Logger LOG = LoggerFactory.getLogger(StreamingIngestion.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Streaming.class);
     // declared input paramters
     private static final String JOB_NAME = "usecase1-labid-1";
     private static final String REGION = "europe-west4";
