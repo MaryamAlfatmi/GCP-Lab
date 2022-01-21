@@ -1,0 +1,10 @@
+SELECT x.* FROM
+   ( SELECT
+      EXTRACT (year from Release_Date) AS year ,
+      Movie_Title,
+      Production_Budget,	
+      RANK() OVER(PARTITION BY EXTRACT (year from Release_Date) ORDER BY Production_Budget DESC ) Rank
+      FROM `nttdata-c4e-bde.uc1_1.Movies` movies 
+      WHERE EXTRACT (year from Release_Date) between 2016 and 2020
+      ORDER BY year DESC)x
+where x.Rank<11

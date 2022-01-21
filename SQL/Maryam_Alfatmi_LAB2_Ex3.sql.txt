@@ -1,0 +1,8 @@
+SELECT DISTINCT 
+date, 
+h.page.pagePath AS pagePath,
+ARRAY_LENGTH(ARRAY_AGG(h.page.pagePath)) AS Counter
+ FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
+ UNNEST(hits) AS h
+ GROUP BY date, pagePath
+ ORDER BY date, Counter DESC;
