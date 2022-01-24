@@ -1,0 +1,10 @@
+SELECT 
+  commits.committer.name as name,
+  count(l.name) as count
+ FROM `bigquery-public-data.github_repos.languages` as languages,UNNEST (languages.language)  as l
+ INNER JOIN `bigquery-public-data.github_repos.sample_commits` as commits
+ ON  languages.repo_name =commits.repo_name
+ WHERE l.name = "Java" AND EXTRACT(year FROM commits.committer.date)=2016
+ GROUP BY name
+ ORDER BY  count DESC
+ LIMIT 10

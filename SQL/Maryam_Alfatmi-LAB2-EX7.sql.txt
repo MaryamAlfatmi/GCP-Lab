@@ -1,0 +1,8 @@
+SELECT DISTINCT 
+l.name as language_name,
+COUNT( l.name) as count
+FROM `bigquery-public-data.github_repos.languages` ,
+UNNEST (language) as l
+GROUP BY l.name 
+ORDER BY count DESC
+LIMIT 10

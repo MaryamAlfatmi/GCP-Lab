@@ -1,0 +1,10 @@
+SELECT
+users.id as id_user,
+count(posts.owner_user_id) as count 
+FROM `bigquery-public-data.stackoverflow.users` as users
+INNER JOIN 
+`bigquery-public-data.stackoverflow.posts_answers` as posts
+ON users.id = posts.owner_user_id
+WHERE EXTRACT (year from posts.creation_date) = 2010
+GROUP BY users.id
+ORDER BY count DESC;
